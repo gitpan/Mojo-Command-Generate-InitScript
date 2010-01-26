@@ -34,9 +34,9 @@ Mojo::Command::Generate::InitScript - Initscript generator command
 =head1 SYNOPSYS
 
 
-usage: ./script/my_app generate init_script target_os [OPTIONS]
+  usage: ./script/my_app generate init_script target_os [OPTIONS]
 
-These options are available:
+  These options are available:
     --output <folder>   Set folder to output initscripts
     --deploy            Deploy initscripts into OS
                         Either --deploy or --output=dist should be specified
@@ -45,7 +45,7 @@ These options are available:
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 

@@ -24,8 +24,11 @@ sub run
 {
 	my ( $self, $opt ) = @_;
 
+	$opt->{'before'}  = [];
+	$opt->{'require'} = [];
+
 	GetOptions($opt,
-		'before=s', 'require=s',
+		'before=s{,}', 'require=s{,}',
 	);
 
 	my $rc_file = $opt->{'deploy'}
@@ -94,11 +97,11 @@ __DATA__
 % my $name = $opt->{'name'};
 #!/bin/sh
 # PROVIDE: <%= $name %>
-% if ( $opt->{'before'} )
+% if ( @{ $opt->{'before'} } )
 % {
-# BEFORE: <%= $opt->{'before'} %>
+# BEFORE: <%= join(' ', @{ $opt->{'before'} }) %>
 % }
-# REQUIRE: NETWORKING<%= $opt->{'require'} ? ' '.$opt->{'require'} : '' %>
+# REQUIRE: NETWORKING<%= @{ $opt->{'require'} } ? ' '.join(' ', @{ $opt->{'require'} }) : '' %>
 # KEYWORD: shutdown
 
 . /etc/rc.subr
