@@ -60,8 +60,8 @@ sub run
 	if ( $opt->{'deploy'} )
 	{
 		system('/usr/sbin/update-rc.d', $opt->{'name'},
-			'start', '20', (@{ $opt->{'runlevels'} }),
-			'stop', '20', (@{ $opt->{'stoplevels'} })
+			'start', '20', (@{ $opt->{'runlevels'} }), '.',
+			'stop', '20', (@{ $opt->{'stoplevels'} }), '.'
 		);
 	}
 }
@@ -158,3 +158,30 @@ EXTRA_ARGS=""
 USER="nobody"
 
 __END__
+
+=head1 NAME
+
+Mojo::Command::Generate::InitScript::Debian - Initscript generator for Linux Debian
+
+=head1 SYNOPSYS
+
+	$ ./mojo_app.pl generate help init_script debian
+	usage: ./mojo_app.pl generate init_script target_os [OPTIONS]
+
+	These options are available:
+		--output <folder>   Set folder to output initscripts
+		--deploy            Deploy initscripts into OS
+							Either --deploy or --output=dist should be specified
+
+		--name <name>       Ovewrite name which is used for initscript filename(s)
+
+	Debian initscript related options:
+		--should-start <applist>    defines facilities which, if present,
+									should be available during startup of this service
+		--should-stop <applist>     facilities which should be available
+									during shutdown of this service.
+		--runlevels  <runlevels>    which run levels should by default run the init script
+									with a start (stop) argument to start (stop)
+									(Default: 2 3 4 5)
+
+=cut

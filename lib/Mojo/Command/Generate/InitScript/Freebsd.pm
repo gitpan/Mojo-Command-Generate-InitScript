@@ -128,3 +128,29 @@ procname="perl"
 run_rc_command "$1"
 
 __END__
+
+=head1 NAME
+
+Mojo::Command::Generate::InitScript::Freebsd - Initscript generator for FreeBSD
+
+=head1 SYNOPSYS
+
+	$ ./mojo_app.pl generate help init_script freebsd
+	usage: ./mojo_app.pl generate init_script target_os [OPTIONS]
+
+	These options are available:
+		--output <folder>   Set folder to output initscripts
+		--deploy            Deploy initscripts into OS
+							Either --deploy or --output=dist should be specified
+
+		--name <name>       Ovewrite name which is used for initscript filename(s)
+
+	FreeBSD related initscript options:
+		--before <applist>         Defines services which
+								   should start after this initscript
+								   for example: --before nginx
+		--requre <applist>         Defines services which
+								   should be started before this initscript
+								   for example: --requre postgresql
+
+=cut
